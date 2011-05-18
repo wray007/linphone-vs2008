@@ -259,10 +259,10 @@ BOOL CMicroVoiceLiteDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// …Ë÷√–°Õº±Í
 
 
-	mUsername.SetWindowText("6021");
-	mPassword.SetWindowText("1234");
-	mHost.SetWindowText("ipddt.vicp.net:5080");
-	mDialNum.SetWindowText("013607193127");
+	mUsername.SetWindowText("203");
+	mPassword.SetWindowText("203");
+	mHost.SetWindowText("192.168.1.200");
+	mDialNum.SetWindowText("443");
 //	mDTMF.SetWindowText("#");
 	linphone_core_enable_logs_with_cb(linphone_log_handler);
 
