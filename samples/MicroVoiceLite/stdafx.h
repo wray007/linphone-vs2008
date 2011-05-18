@@ -35,7 +35,11 @@
 #include <afxcmn.h>             // MFC 对 Windows 公共控件的支持
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
+#ifdef NO_VS2008_SP1
+#define CWinAppEx CWinApp
+#else
 #include <afxcontrolbars.h>     // 功能区和控件条的 MFC 支持
+#endif // NO_VS2008_SP1
 
 
 #include <afxsock.h>            // MFC 套接字扩展
