@@ -265,6 +265,7 @@ BOOL CMicroVoiceLiteDlg::OnInitDialog()
 	mDialNum.SetWindowText("443");
 //	mDTMF.SetWindowText("#");
 	linphone_core_enable_logs_with_cb(linphone_log_handler);
+	
 
 	memset(&vTable,0,sizeof(vTable));
 	vTable.show = showInterfaceCb;
@@ -282,6 +283,8 @@ BOOL CMicroVoiceLiteDlg::OnInitDialog()
 		,config_file
 		,factoryConfig
 		,this);
+
+	linphone_core_set_playback_gain_db(the_core,1.0);
 
 	if (the_core)
 	{

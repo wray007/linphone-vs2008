@@ -51,3 +51,5 @@ linphone_core_network_send_quality_test
 ortp_free
 ortp_strdup_printf
 ortp_strdup_vprintf
+
+linphone_core_set_playback_gain_db
