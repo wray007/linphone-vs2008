@@ -452,6 +452,7 @@ int rtp_session_get_multicast_loopback(RtpSession *session)
  *
 **/
 int rtp_session_set_dscp(RtpSession *session, int dscp){
+#ifdef ENABLE_QOS
 	int retval=0;
 	int tos;
 #if (_WIN32_WINNT >= 0x0600)
@@ -465,6 +466,7 @@ int rtp_session_set_dscp(RtpSession *session, int dscp){
 	if (session->rtp.socket < 0) return 0;
 
 #if (_WIN32_WINNT >= 0x0600)
+
 	memset(&ovi, 0, sizeof(ovi));
 	ovi.dwOSVersionInfoSize = sizeof(ovi);
 	GetVersionEx((LPOSVERSIONINFO) & ovi);
@@ -552,6 +554,9 @@ int rtp_session_set_dscp(RtpSession *session, int dscp){
 		ortp_warning("Failed to set DSCP value on socket.");
 
 	return retval;
+#else
+	return 0;
+#endif
 }
 
 
