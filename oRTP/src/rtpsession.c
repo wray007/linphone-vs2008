@@ -33,9 +33,11 @@
 #include "rtpsession_priv.h"
 
 #if (_WIN32_WINNT >= 0x0600)
+#ifdef ENABLE_QOS
 #include <delayimp.h>
 #undef ExternC /* avoid redefinition... */
 #include <QOS2.h>
+#endif
 #endif
 
 extern mblk_t *rtcp_create_simple_bye_packet(uint32_t ssrc, const char *reason);
@@ -1341,6 +1343,7 @@ void rtp_session_uninit (RtpSession * session)
 	msgb_allocator_uninit(&session->allocator);
 
 #if (_WIN32_WINNT >= 0x0600)
+#ifdef ENABLE_QOS
 	if (session->rtp.QoSFlowID != 0)
     {
 		OSVERSIONINFOEX ovi;
@@ -1377,6 +1380,7 @@ void rtp_session_uninit (RtpSession * session)
         QOSCloseHandle(session->rtp.QoSHandle);
 		session->rtp.QoSHandle=NULL;
     }
+#endif
 #endif
 }
 
