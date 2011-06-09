@@ -191,6 +191,8 @@ void CMicroVoiceLiteDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_CHECK_RECORD, mRecord);
 	DDX_Control(pDX, IDC_CHECK_AEC, mAEC);
 	//DDX_Control(pDX, IDC_EDIT_DTMF, mDTMF);
+	DDX_Control(pDX, IDC_COMBO_CAM_LIST, mCamera);
+	DDX_Control(pDX, IDC_EDIT1, mVideoWnd);
 }
 
 BEGIN_MESSAGE_MAP(CMicroVoiceLiteDlg, CDialog)
@@ -224,6 +226,7 @@ BEGIN_MESSAGE_MAP(CMicroVoiceLiteDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_DTMF_10, &CMicroVoiceLiteDlg::OnBnClickedButtonDtmf10)
 	ON_BN_CLICKED(IDC_BUTTON_DTMF_0, &CMicroVoiceLiteDlg::OnBnClickedButtonDtmf0)
 	ON_BN_CLICKED(IDC_BUTTON_DTMF_11, &CMicroVoiceLiteDlg::OnBnClickedButtonDtmf11)
+	ON_CBN_SELCHANGE(IDC_COMBO_CAM_LIST, &CMicroVoiceLiteDlg::OnCbnSelchangeComboCamList)
 END_MESSAGE_MAP()
 
 
@@ -266,6 +269,7 @@ BOOL CMicroVoiceLiteDlg::OnInitDialog()
 //	mDTMF.SetWindowText("#");
 	linphone_core_enable_logs_with_cb(linphone_log_handler);
 	
+	
 
 	memset(&vTable,0,sizeof(vTable));
 	vTable.show = showInterfaceCb;
@@ -285,6 +289,29 @@ BOOL CMicroVoiceLiteDlg::OnInitDialog()
 		,this);
 
 	linphone_core_set_playback_gain_db(the_core,1.0);
+
+	{//摄像头列表
+		const char **video_devices=linphone_core_get_video_devices(the_core);
+		const char *curdev = linphone_core_get_video_device(the_core);
+		const char *dev = NULL;
+
+		int i=0;
+		int selected = -1;
+		for(;dev=video_devices[i];i++){
+			CString tmp = CString(dev);
+			mCamera.AddString(tmp);
+			if(curdev && strlen(curdev) && !strcmp(curdev,tmp))
+			{
+				selected = i;
+				linphone_core_set_video_device(the_core,dev);
+			}
+		}
+
+		mCamera.SetCurSel(selected);
+	}
+
+	//设置本地视频窗口
+//	linphone_core_set_native_video_window_id(the_core,(unsigned long)mVideoView.m_hWnd);
 
 	if (the_core)
 	{
@@ -601,4 +628,11 @@ void CMicroVoiceLiteDlg::OnBnClickedButtonDtmf0()
 void CMicroVoiceLiteDlg::OnBnClickedButtonDtmf11()
 {
 	linphone_core_send_dtmf(the_core,'#');
+}
+
+void CMicroVoiceLiteDlg::OnCbnSelchangeComboCamList()
+{
+	CString device;
+	mCamera.GetWindowText(device);
+	linphone_core_set_video_device(the_core,device.GetString());
 }

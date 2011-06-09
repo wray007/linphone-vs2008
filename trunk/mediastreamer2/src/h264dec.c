@@ -26,6 +26,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "ortp/b64.h"
 
+extern "C" {
+	size_t b64_decode(char const *src, size_t srcLen, void *dest, size_t destSize);
+};
+
 typedef struct _DecData{
 	mblk_t *yuv_msg;
 	mblk_t *sps,*pps;
@@ -72,7 +76,7 @@ static void dec_init(MSFilter *f){
 	d->outbuf.w=0;
 	d->outbuf.h=0;
 	d->bitstream_size=65536;
-	d->bitstream=ms_malloc0(d->bitstream_size);
+	d->bitstream=(uint8_t *)ms_malloc0(d->bitstream_size);
 	f->data=d;
 }
 
@@ -162,7 +166,7 @@ static bool_t check_sps_pps_change(DecData *d, mblk_t *sps, mblk_t *pps){
 
 static void enlarge_bitstream(DecData *d, int new_size){
 	d->bitstream_size=new_size;
-	d->bitstream=ms_realloc(d->bitstream,d->bitstream_size);
+	d->bitstream=(uint8_t *)ms_realloc(d->bitstream,d->bitstream_size);
 }
 
 static int nalusToFrame(DecData *d, MSQueue *naluq, bool_t *new_sps_pps){
@@ -307,7 +311,7 @@ MSFilterDesc ms_h264_dec_desc={
 #else
 
 
-MSFilterDesc ms_h264_dec_desc={
+extern  MSFilterDesc ms_h264_dec_desc={
 	MS_H264_DEC_ID,
 	"MSH264Dec",
 	"A H264 decoder based on ffmpeg project.",

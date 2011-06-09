@@ -1057,7 +1057,7 @@ static MSFilter * ms_dshow_create_reader(MSWebCam *obj){
 	return f;
 }
 
-extern "C" MSWebCamDesc ms_dshow_cam_desc={
+MSWebCamDesc ms_dshow_cam_desc={
 	"Directshow capture",
 	&ms_dshow_detect,
 	NULL,

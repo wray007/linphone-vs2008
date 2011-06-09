@@ -48,7 +48,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\oRTP\include;..\..\mediastreamer2\include;..\..\osip\include;..\..\eXosip\include;..\..\;..\..\crypt\include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBLINPHONE_EXPORTS;IN_LINPHONE;OSIP_MT;ENABLE_TRACE;LOG_DOMAIN=\&quot;QfishPhoneCore\&quot;;LIBSIPUA3_NAME=\&quot;QfishPhone\&quot;;LINPHONE_VERSION=\&quot;3.0\&quot;;LINPHONE_PLUGINS_DIR=\&quot;plugins\&quot;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBLINPHONE_EXPORTS;IN_LINPHONE;OSIP_MT;ENABLE_TRACE;LOG_DOMAIN=\&quot;QfishPhoneCore\&quot;;LIBSIPUA3_NAME=\&quot;QfishPhone\&quot;;LINPHONE_VERSION=\&quot;3.0\&quot;;LINPHONE_PLUGINS_DIR=\&quot;plugins\&quot;;VIDEO_ENABLED"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
