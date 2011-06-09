@@ -53,3 +53,6 @@ ortp_strdup_printf
 ortp_strdup_vprintf
 
 linphone_core_set_playback_gain_db
+linphone_core_set_video_device
+linphone_core_get_video_devices
+linphone_core_get_video_device

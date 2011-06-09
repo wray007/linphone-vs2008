@@ -42,8 +42,10 @@ extern MSFilterDesc ms_ilbc_dec_desc;
 //extern MSFilterDesc ms_arts_write_desc;
 //extern MSFilterDesc ms_v4l_desc;
 //extern MSFilterDesc ms_sdl_out_desc;
-//extern MSFilterDesc ms_h263_enc_desc;
-//extern MSFilterDesc ms_h263_dec_desc;
+extern MSFilterDesc ms_h263_enc_desc;
+extern MSFilterDesc ms_h263_dec_desc;
+extern MSFilterDesc ms_h264_dec_desc;
+extern MSFilterDesc x264_enc_desc;
 extern MSFilterDesc ms_join_desc;
 extern MSFilterDesc ms_resample_desc;
 extern MSFilterDesc ms_volume_desc;
@@ -51,6 +53,9 @@ extern MSFilterDesc ms_ice_desc;
 extern MSFilterDesc ms_equalizer_desc;
 extern MSFilterDesc ms_audio_mixer_desc;
 extern MSFilterDesc ms_channel_adapter_desc;
+extern MSFilterDesc ms_pix_conv_desc;
+extern MSFilterDesc ms_size_conv_desc;
+extern MSFilterDesc ms_dd_display_desc;
 MSFilterDesc * ms_filter_descs[]={
 &ms_alaw_dec_desc,
 &ms_alaw_enc_desc,
@@ -94,8 +99,10 @@ MSFilterDesc * ms_filter_descs[]={
 //&ms_arts_write_desc,
 //&ms_v4l_desc,
 //&ms_sdl_out_desc,
-//&ms_h263_enc_desc,
-//&ms_h263_dec_desc,
+&ms_h263_enc_desc,
+&ms_h263_dec_desc,
+&ms_h264_dec_desc,
+&x264_enc_desc,
 &ms_join_desc,
 #ifndef DISABLE_RESAMPLE
 &ms_resample_desc,
@@ -105,6 +112,9 @@ MSFilterDesc * ms_filter_descs[]={
 &ms_equalizer_desc,
 &ms_audio_mixer_desc,
 &ms_channel_adapter_desc,
+&ms_pix_conv_desc,
+&ms_size_conv_desc,
+&ms_dd_display_desc,
 NULL
 };
 

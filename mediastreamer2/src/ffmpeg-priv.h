@@ -26,6 +26,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ortp/port.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #if defined(HAVE_LIBAVCODEC_AVCODEC_H)
 /* new layout */
 # include <libavcodec/avcodec.h>
@@ -65,4 +69,7 @@ static inline int avcodec_decode_video2(AVCodecContext *avctx, AVFrame *picture,
 }
 #endif
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* FFMPEG_PRIV_H */

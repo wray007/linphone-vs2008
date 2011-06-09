@@ -68,4 +68,7 @@ public:
 	afx_msg void OnBnClickedButtonDtmf10();
 	afx_msg void OnBnClickedButtonDtmf0();
 	afx_msg void OnBnClickedButtonDtmf11();
+	CComboBox mCamera;
+	afx_msg void OnCbnSelchangeComboCamList();
+	CEdit mVideoWnd;
 };
