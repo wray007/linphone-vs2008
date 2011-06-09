@@ -340,6 +340,10 @@ int video_stream_start (VideoStream *stream, RtpProfile *profile, const char *re
 	ms_filter_call_method(stream->output,MS_FILTER_SET_PIX_FMT,&format);
 	ms_filter_call_method(stream->output,MS_VIDEO_DISPLAY_SET_LOCAL_VIEW_MODE,&stream->corner);
 
+	if (stream->window_id!=0){
+		ms_filter_call_method(stream->output, MS_VIDEO_DISPLAY_SET_NATIVE_WINDOW_ID,&stream->window_id);
+	}
+
 	if (pt->recv_fmtp!=NULL)
 		ms_filter_call_method(stream->decoder,MS_FILTER_ADD_FMTP,(void*)pt->recv_fmtp);
 
@@ -405,6 +409,9 @@ unsigned long video_stream_get_native_window_id(VideoStream *stream){
 	return 0;
 }
 
+void video_stream_set_native_window_id(VideoStream *stream, unsigned long id){
+	stream->window_id=id;
+}
 
 VideoStream * video_preview_start(MSWebCam *device, MSVideoSize disp_size){
 	VideoStream *stream = (VideoStream *)ms_new0 (VideoStream, 1);

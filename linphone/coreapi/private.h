@@ -425,6 +425,7 @@ struct _LinphoneCore
 	bool_t network_reachable;
     bool_t audio_muted;
 	uint64_t option_time_start;
+	unsigned long video_window_id;
 };
 
 #ifdef __cplusplus

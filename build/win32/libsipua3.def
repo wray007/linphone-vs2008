@@ -56,3 +56,4 @@ linphone_core_set_playback_gain_db
 linphone_core_set_video_device
 linphone_core_get_video_devices
 linphone_core_get_video_device
+linphone_core_set_native_video_window_id
