@@ -150,3 +150,4 @@ ms_web_cam_manager_get_cam
 ms_static_image_set_default_image
 ms_filter_get_id
 video_stream_get_native_window_id
+video_stream_set_native_window_id

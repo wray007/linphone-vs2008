@@ -311,7 +311,7 @@ BOOL CMicroVoiceLiteDlg::OnInitDialog()
 	}
 
 	//设置本地视频窗口
-//	linphone_core_set_native_video_window_id(the_core,(unsigned long)mVideoView.m_hWnd);
+	linphone_core_set_native_video_window_id(the_core,(unsigned long)mVideoWnd.m_hWnd);
 
 	if (the_core)
 	{

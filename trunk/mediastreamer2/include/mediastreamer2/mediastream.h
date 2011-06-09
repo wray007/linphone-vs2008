@@ -208,6 +208,7 @@ struct _VideoStream
 	void *render_pointer;
 	char *display_name;
 	bool_t adapt_bitrate;
+	unsigned long window_id;
 };
 
 typedef struct _VideoStream VideoStream;
@@ -227,7 +228,7 @@ void video_stream_stop(VideoStream * stream);
 void video_stream_set_sent_video_size(VideoStream *stream, MSVideoSize vsize);
 void video_stream_enable_self_view(VideoStream *stream, bool_t val);
 unsigned long video_stream_get_native_window_id(VideoStream *stream);
-
+void video_stream_set_native_window_id(VideoStream *stream, unsigned long id);
 
 VideoStream * video_preview_start(MSWebCam *device, MSVideoSize vsize);
 void video_preview_stop(VideoStream *stream);

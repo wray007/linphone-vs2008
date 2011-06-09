@@ -2586,6 +2586,8 @@ void linphone_core_start_media_streams(LinphoneCore *lc, LinphoneCall *call){
 			call->video_profile=make_profile(lc,call->resultdesc,stream,&used_pt);
 			video_stream_set_sent_video_size(lc->videostream,linphone_core_get_preferred_video_size(lc));
 			video_stream_enable_self_view(lc->videostream,lc->video_conf.selfview);
+			if (lc->video_window_id!=0)
+				video_stream_set_native_window_id(lc->videostream,lc->video_window_id);
 			if (lc->video_conf.display && lc->video_conf.capture)
 				video_stream_start(lc->videostream,
 				call->video_profile, addr, stream->port,
@@ -3548,7 +3550,21 @@ unsigned long linphone_core_get_native_video_window_id(const LinphoneCore *lc){
 	if (lc->previewstream)
 		return video_stream_get_native_window_id(lc->previewstream);
 #endif
-	return 0;
+	return lc->video_window_id;
+}
+
+/**
+* Set the native video window id where the video is to be displayed.
+* If not set the core will create its own window.
+**/
+void linphone_core_set_native_video_window_id(LinphoneCore *lc, unsigned long id){
+#ifdef VIDEO_ENABLED
+	LinphoneCall *call=linphone_core_get_current_call(lc);
+	lc->video_window_id=id;
+	if (lc->videostream){
+		video_stream_set_native_window_id(lc->videostream,id);
+	}
+#endif
 }
 
 static MSVideoSizeDef supported_resolutions[]={

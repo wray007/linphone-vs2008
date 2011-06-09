@@ -802,7 +802,7 @@ int linphone_core_set_static_picture(LinphoneCore *lc, const char *path);
 
 /*function to be used for eventually setting window decorations (icons, title...)*/
 unsigned long linphone_core_get_native_video_window_id(const LinphoneCore *lc);
-
+void linphone_core_set_native_video_window_id(LinphoneCore *lc, unsigned long id);
 
 /*play/record support: use files instead of soundcard*/
 void linphone_core_use_files(LinphoneCore *lc, bool_t yesno);
