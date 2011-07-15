@@ -121,7 +121,7 @@ static void media_quality(LinphoneCore *lc, int jitter, float packet_lost)
 	CMicroVoiceLiteDlg *the_ui = (CMicroVoiceLiteDlg *)linphone_core_get_user_data(lc);
 	CString tmp;
 
-	tmp.Format("包间平均抖动 %d ms, 丢包率 %2.2f%%",jitter,packet_lost);
+	tmp.Format("包间平均抖动 %d ms, 丢包率 %2.2f%%",jitter/8,packet_lost);
 	if(the_ui)
 		the_ui->mStatus.SetWindowText(tmp);
 }
