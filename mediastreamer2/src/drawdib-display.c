@@ -484,23 +484,32 @@ static void dd_display_process(MSFilter *f){
 			obj->lsize.height=localpic.h;
 		}
 	}
-	
+
+
 	if (f->inputs[0]!=NULL && (main_im=ms_queue_peek_last(f->inputs[0]))!=NULL) {
 		if (yuv_buf_init_from_mblk(&mainpic,main_im)==0){
 			if (obj->autofit && (obj->vsize.width!=mainpic.w || obj->vsize.height!=mainpic.h)
 				&& (mainpic.w>wsize.width || mainpic.h>wsize.height)){
-				RECT cur;
-				ms_message("Detected video resolution changed, resizing window");
-				GetWindowRect(obj->window,&cur);
-				wsize.width=mainpic.w;
-				wsize.height=mainpic.h;
-				MoveWindow(obj->window,cur.left, cur.top, wsize.width, wsize.height,TRUE);
-				obj->need_repaint=TRUE;
+					RECT cur;
+
+					ms_message("Detected video resolution changed, resizing window");
+					GetWindowRect(obj->window,&cur);
+
+					if(obj->own_window){
+						char *title = ms_strdup_printf("VideoSize: %dx%d",mainpic.w,mainpic.h);
+						SetWindowText(obj->window,title);
+						ms_free(title);
+						wsize.width=mainpic.w;
+						wsize.height=mainpic.h;
+						MoveWindow(obj->window,cur.left, cur.top, wsize.width, wsize.height,TRUE);
+					}
+					obj->need_repaint=TRUE;
 			}
 			obj->vsize.width=mainpic.w;
 			obj->vsize.height=mainpic.h;
 		}
 	}
+	
 
 	if (main_im!=NULL || local_im!=NULL || obj->need_repaint){
 		compute_layout(wsize,obj->vsize,obj->lsize,&mainrect,&localrect,corner, scalefactor);
