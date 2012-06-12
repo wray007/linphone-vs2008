@@ -1,13 +1,4 @@
 *linphone-vs2008 在vs2010上的编译问题解决*
 
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+ * 用vs2010打开 built/win32/libsipua3.sln
+ * 会转换成 vs2010的解决方案，转换完成后，发现有两个工程unavailable：libsipua3和libspeex
