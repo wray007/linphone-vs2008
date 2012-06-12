@@ -1,13 +1,5 @@
-#summary One-sentence summary of this page.
+#编译顺序.
 
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+ * 编译Audio下的6个工程:libbroadvoice, libg726, libgsm, libilbc, libspeex, libspeexdsp
+ * 编译 osipparse2 -> osip2 -> eXosip2 -> oRTP -> mediasteamer2 ->libsipua3
+ * 最后编译 MicroVoiceLite  
