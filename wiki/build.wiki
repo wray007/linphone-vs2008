@@ -1,4 +1,3 @@
-#编译顺序
 *编译顺序*
 
  * 编译Audio下的6个工程:libbroadvoice, libg726, libgsm, libilbc, libspeex, libspeexdsp
